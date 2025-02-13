@@ -1,17 +1,18 @@
 import httpx
 import logging
 import json
+import os
 from typing import Dict, Any
 
-PROXY_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjIxZjEwMDI4MzJAZHMuc3R1ZHkuaWl0bS5hYy5pbiJ9.fVUsbTxVaaoRL7t6712xBmWPDJQ4atPmkd49BfdWVog"
-PROXY_URL = "http://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
+AI_PROXY_TOKEN = os.environ.get("AIPROXY_TOKEN")
+AI_PROXY_URL = "http://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
 
 def query_gpt(task: str, tools: list[Dict[str, Any]]) -> Dict[str, Any]:
     try:
         response = httpx.post(
-            PROXY_URL,
+            AI_PROXY_URL,
             headers={
-                "Authorization": f"Bearer {PROXY_TOKEN}",
+                "Authorization": f"Bearer {AI_PROXY_TOKEN}",
                 "Content-Type": "application/json",
             },
             json={

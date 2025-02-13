@@ -205,9 +205,9 @@ def query_llm(prompt: str) -> Dict[str, Any]:  # New function for task A7 [extra
         print("Request Data:", json.dumps(request_data, indent=2))  # Print the request
 
         response = httpx.post(
-            PROXY_URL,
+            AI_PROXY_URL,
             headers={
-                "Authorization": f"Bearer {PROXY_TOKEN}",
+                "Authorization": f"Bearer {AI_PROXY_TOKEN}",
                 "Content-Type": "application/json",
             },
             json=request_data,timeout=10.0
@@ -253,9 +253,9 @@ def write_credit_card_no(input_file: str, output_file: str):
         }
 
         response = httpx.post(
-            PROXY_URL,
+            AI_PROXY_URL,
             headers={
-                "Authorization": f"Bearer {PROXY_TOKEN}",
+                "Authorization": f"Bearer {AI_PROXY_TOKEN}",
                 "Content-Type": "application/json",
             },
             json=request_data,
@@ -289,7 +289,7 @@ async def similar_comments(input_file: str, output_file: str):
         async with httpx.AsyncClient(timeout=30) as client:
             response = await client.post(
                 "https://aiproxy.sanand.workers.dev/openai/v1/embeddings",
-                headers={"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjIxZjEwMDI4MzJAZHMuc3R1ZHkuaWl0bS5hYy5pbiJ9.fVUsbTxVaaoRL7t6712xBmWPDJQ4atPmkd49BfdWVog"},  # Replace with your token
+                headers={"Authorization": f"Bearer {AI_PROXY_TOKEN}"},  # Replace with your token
                 json={"model": "text-embedding-3-small", "input": data},  # Send list of comments
             )
             response.raise_for_status() # Check for HTTP errors
