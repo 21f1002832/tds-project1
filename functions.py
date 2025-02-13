@@ -1,12 +1,4 @@
 #functions.py
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#   "numpy",
-#   "httpx",
-#   "fastapi",
-# ]
-# ///
 
 import os
 import subprocess
